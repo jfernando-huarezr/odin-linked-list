@@ -16,11 +16,11 @@ export default class LinkedList {
   addToStart(value) {
     // create empty Node
     let newNode = new Node(value);
-    // se enlaza newNode a head
+    // save the current head node into newNode.next
     newNode.next = this.head;
-    // se pone head en newNode
+    // now update this.head as newNode
     this.head = newNode;
-    // se actualiza la longitud de la lista
+    // update the linked list length
     this.length++;
   }
 
@@ -28,64 +28,65 @@ export default class LinkedList {
     let newNode = new Node(value);
 
     if (this.head == null) {
-      // si la lista está vacía
-      // se apunta head al nuevo nodo
+      // if linked list empty
+      // the head is newNode
       this.head = newNode;
     } else {
-      // de lo contrario, se recorre toda la lista hasta
-      // encontrar el último elemento (el que tiene next = null)
+      // else, we need to travel all the list until we
+      // find the last node (the one who has next = null)
       let current = this.head;
       while (current.next != null) {
         current = current.next;
       }
-      // al encontrarlo, se le pone newNode como siguiente
+      // once found, attach newNode as next
       current.next = newNode;
     }
 
-    // se actualiza la longitud de la lista
+    // update linked list length
     this.length++;
   }
 
   insertAt(index, value) {
-    // validamos el valor de index
+    // validate index value
     if (index < 0 || index > this.length) {
-      throw new Error("index sobrepasa los límites de la lista");
+      throw new Error("index exceeds the limits of the list");
     }
 
-    // se crea un nuevo nodo
+    // create new Node
     let newNode = new Node(value);
 
     if (index === 0) {
-      // si index es 0, es un addToStart(value)
+      // if index = 0, it's an addToStart(value)
       this.addToStart(value);
     } else {
-      // de lo contrario, nos tenemos que ubicar
-      // en el nodo (index - 1)
+      // else, we need to locate
+      // the node (index - 1)
       let current = this.head;
       for (let i = 0; i < index - 1; i++) {
         current = current.next;
       }
-      // y hacer la insersión
+      // then we do our insertion
       newNode.next = current.next;
       current.next = newNode;
     }
 
+    //update linked list length
     this.length++;
   }
 
   at(index) {
-    // validamos el valor de index
+    // validate index value
     if (index < 0 || index >= this.length) {
-      throw new Error("index sobrepasa los límites de la lista");
+      throw new Error("index exceeds the limits of the list");
     }
 
-    // recorremos la lista "index" veces
+    // travel the list "index" times
     let current = this.head;
     for (let i = 0; i < index; i++) {
       current = current.next;
     }
 
-    // se retorna el elemento en la posición "index"
+    // return element at "index" position
     return current;
   }
 
@@ -103,8 +104,8 @@ export default class LinkedList {
   }
 
   print() {
-    // se recorre los elementos de la lista
-    // y se imprime su valor mientras exista
+    // travel element in the list
+    // print value while it exists
     let current = this.head;
     while (current != null) {
       console.log(current.value);
@@ -190,9 +191,9 @@ export default class LinkedList {
   }
 
   removeAt(index) {
-    // validamos el valor de index
+    // validate index value
     if (index < 0 || index > this.length) {
-      throw new Error("index sobrepasa los límites de la lista");
+      throw new Error("index exceeds the limits of the list");
     }
 
     if (index === 0) {
@@ -200,13 +201,13 @@ export default class LinkedList {
       let newHead = this.head.next;
       this.head = newHead;
     } else {
-      // de lo contrario, nos tenemos que ubicar
-      // en el nodo (index - 1)
+      // else, we need to find
+      // node (index - 1)
       let current = this.head;
       for (let i = 0; i < index - 1; i++) {
         current = current.next;
       }
-      // y el nuevo next sera el next next
+      // the next will be the node next next
       current.next = current.next.next;
     }
 
