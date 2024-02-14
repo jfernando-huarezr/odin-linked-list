@@ -1,2 +1,2 @@
 # odin-linked-list
-Linked Lists
+This is my implementation for a linked list (not a double linked list)
