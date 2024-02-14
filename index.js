@@ -13,11 +13,15 @@ list.insertAt(6, "Yohan");
 // let node = list.get(2)
 // console.log(node.value)
 
-list.print();
+//list.print();
 list.toString();
 
 const answer = list.find("Yohan");
 console.log(answer);
+
+list.removeAt(2);
+
+list.toString();
 
 // list.removeFromStart() //shift()
 // list.removeFromEnd() // pop()

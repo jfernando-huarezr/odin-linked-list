@@ -188,4 +188,28 @@ export default class LinkedList {
 
     console.log(string);
   }
+
+  removeAt(index) {
+    // validamos el valor de index
+    if (index < 0 || index > this.length) {
+      throw new Error("index sobrepasa los límites de la lista");
+    }
+
+    if (index === 0) {
+      // index 0, remove head and transfer next value as new head
+      let newHead = this.head.next;
+      this.head = newHead;
+    } else {
+      // de lo contrario, nos tenemos que ubicar
+      // en el nodo (index - 1)
+      let current = this.head;
+      for (let i = 0; i < index - 1; i++) {
+        current = current.next;
+      }
+      // y el nuevo next sera el next next
+      current.next = current.next.next;
+    }
+
+    this.length--;
+  }
 }
